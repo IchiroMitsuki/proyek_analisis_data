@@ -111,11 +111,14 @@ def main():
     st.title("Analisis Metode Pembayaran E-Commerce")
     st.write("Aplikasi ini menampilkan analisis dari dataset pembayaran e-commerce.")
     st.sidebar.header("Filter Data")
-    selected_category = st.sidebar.selectbox("Pilih Kategori Produk", df["product_category_name_english"].unique())
-    selected_payment = st.sidebar.selectbox("Pilih Metode Pembayaran", df["payment_type"].unique())
+    
 
     
     df = load_data()
+    
+    selected_category = st.sidebar.selectbox("Pilih Kategori Produk", df["product_category_name_english"].unique())
+    selected_payment = st.sidebar.selectbox("Pilih Metode Pembayaran", df["payment_type"].unique())
+    
     st.write("### Data Overview")
     st.write(df.head())
     
