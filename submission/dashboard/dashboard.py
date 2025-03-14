@@ -133,8 +133,20 @@ def main():
     
     st.write("### Distribusi Metode Pembayaram dari Kategori Produk dengan Transaksi Terbanyak dengan Bar Chart")
     plot_top_one_categories_depend_transaction_barchart(df)
+
     
-   
+    selected_category = st.selectbox("Pilih Kategori Produk", df_gabungan_clean["product_category_name_english"].unique())
+    
+    # Filter dataframe
+    df_filtered = df_gabungan_clean[df_gabungan_clean["product_category_name_english"] == selected_category]
+    st.write(df_filtered)
+
+
+    selected_payment = st.selectbox("Pilih Metode Pembayaran", df_gabungan_clean["payment_type"].unique())
+
+    df_filtered = df_gabungan_clean[df_gabungan_clean["payment_type"] == selected_payment]
+    st.write(df_filtered)
+
     
 
 if __name__ == "__main__":
