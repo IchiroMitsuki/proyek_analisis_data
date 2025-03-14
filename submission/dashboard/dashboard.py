@@ -5,6 +5,7 @@ import streamlit as st
 from babel.numbers import format_currency
 sns.set(style='dark')
 
+
 def load_data():
     # Load datasets
     
@@ -105,9 +106,16 @@ def plot_top_one_categories_depend_transaction_barchart(df):
     plt.show()
     st.pyplot(plt)
 
+    df_filtered = df[
+    (df["product_category_name_english"] == selected_category) &
+    (df["payment_type"] == selected_payment)
+]
+
 def main():
     st.title("Analisis Metode Pembayaran E-Commerce")
     st.write("Aplikasi ini menampilkan analisis dari dataset pembayaran e-commerce.")
+    st.sidebar.header("Filter Data")
+
     
     df = load_data()
     st.write("### Data Overview")
@@ -134,19 +142,12 @@ def main():
     st.write("### Distribusi Metode Pembayaram dari Kategori Produk dengan Transaksi Terbanyak dengan Bar Chart")
     plot_top_one_categories_depend_transaction_barchart(df)
 
+    selected_category = st.sidebar.selectbox("Pilih Kategori Produk", df["product_category_name_english"].unique())
+
+    selected_payment = st.sidebar.selectbox("Pilih Metode Pembayaran", df["payment_type"].unique())
     
-    selected_category = st.selectbox("Pilih Kategori Produk", df_gabungan_clean["product_category_name_english"].unique())
-    
-    # Filter dataframe
-    df_filtered = df_gabungan_clean[df_gabungan_clean["product_category_name_english"] == selected_category]
+    st.write("### Hasil Filtering")
     st.write(df_filtered)
-
-
-    selected_payment = st.selectbox("Pilih Metode Pembayaran", df_gabungan_clean["payment_type"].unique())
-
-    df_filtered = df_gabungan_clean[df_gabungan_clean["payment_type"] == selected_payment]
-    st.write(df_filtered)
-
     
 
 if __name__ == "__main__":
