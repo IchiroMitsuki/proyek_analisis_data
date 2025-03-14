@@ -110,6 +110,9 @@ def plot_top_one_categories_depend_transaction_barchart(df):
     (df["product_category_name_english"] == selected_category) &
     (df["payment_type"] == selected_payment)
 ]
+    selected_category = st.sidebar.selectbox("Pilih Kategori Produk", df["product_category_name_english"].unique())
+
+    selected_payment = st.sidebar.selectbox("Pilih Metode Pembayaran", df["payment_type"].unique())
 
 def main():
     st.title("Analisis Metode Pembayaran E-Commerce")
@@ -141,10 +144,6 @@ def main():
     
     st.write("### Distribusi Metode Pembayaram dari Kategori Produk dengan Transaksi Terbanyak dengan Bar Chart")
     plot_top_one_categories_depend_transaction_barchart(df)
-
-    selected_category = st.sidebar.selectbox("Pilih Kategori Produk", df["product_category_name_english"].unique())
-
-    selected_payment = st.sidebar.selectbox("Pilih Metode Pembayaran", df["payment_type"].unique())
     
     st.write("### Hasil Filtering")
     st.write(df_filtered)
