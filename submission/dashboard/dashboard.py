@@ -8,7 +8,7 @@ sns.set(style='dark')
 def load_data():
     # Load datasets
     
-    df_final = pd.read_csv(r"C:\Latihan_Python\proyek_analisis_data\Dataframe_proyek_analisis_data.csv")
+    df_final = pd.read_csv("Dataframe_proyek_analisis_data.csv")
     
     return df_final
 
